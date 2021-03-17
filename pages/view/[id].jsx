@@ -4,19 +4,26 @@ import axios from 'axios';
 import Head from 'next/head';
 import Item from '../../src/components/Item';
 
-const Post = ({ item }) => (
-  <>
-    {item && (
-      <>
-        <Head>
-          <title>{item.title}</title>
-          <meta name="description" content={item.description} />
-        </Head>
-        <Item item={item} />
-      </>
-    )}
-  </>
-);
+/**
+ * const router = useRouter();
+ * const { id } = router.query;
+ */
+
+const Post = ({ item }) => {
+  return (
+    <>
+      {item && (
+        <>
+          <Head>
+            <title>{item.title}</title>
+            <meta name="description" content={item.description} />
+          </Head>
+          <Item item={item} />
+        </>
+      )}
+    </>
+  );
+};
 
 Post.propTypes = {
   item: PropTypes.shape({

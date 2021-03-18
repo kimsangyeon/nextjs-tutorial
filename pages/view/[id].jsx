@@ -9,7 +9,7 @@ import Item from '../../src/components/Item';
  * const { id } = router.query;
  */
 
-const Post = ({ item }) => {
+const Post = ({ item, name }) => {
   return (
     <>
       {item && (
@@ -18,6 +18,7 @@ const Post = ({ item }) => {
             <title>{item.title}</title>
             <meta name="description" content={item.description} />
           </Head>
+          {name} 환경 입니다.
           <Item item={item} />
         </>
       )}
@@ -29,7 +30,8 @@ Post.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-  })
+  }),
+  name: PropTypes.string,
 }
 
 export default Post;
@@ -43,6 +45,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       item: data,
+      // eslint-disable-next-line no-undef
+      name: process.env.name,
     },
   };
 }
